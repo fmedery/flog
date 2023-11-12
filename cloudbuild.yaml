@@ -1,0 +1,11 @@
+# create docker image for flog and push to artifact registry in us-west1
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:$SHORT_SHA', '.']
+images:
+- 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:$SHORT_SHA'
+options:
+  dynamic_substitutions: true
+substitutions:
+  _SHORT_SHA: $(SHORT_SHA)
+  _PROJECT_ID: $(PROJECT_ID)

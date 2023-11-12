@@ -7,6 +7,3 @@ images:
 - 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog'
 options:
   dynamic_substitutions: true
-substitutions:
- # _SHORT_SHA: $(SHORT_SHA)
-  _PROJECT_ID: $(PROJECT_ID)

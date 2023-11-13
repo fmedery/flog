@@ -1,7 +1,8 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest', '.']
-  - images: ['us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest']
-  
+
   - name: 'gcr.io/cloud-builders/gcloud'
     args: ['run', 'deploy', 'flog', '--image', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated']
+
+images: ['us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest']

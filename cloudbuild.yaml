@@ -1,9 +1,9 @@
 # create docker image for flog and push to artifact registry in us-west1
 steps:
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:$SHORT_SHA', '.']
+  args: ['build', '-t', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest', '.']
 images:
-- 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:$SHORT_SHA'
+- 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest'
 #- 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog'
 options:
   dynamic_substitutions: true
@@ -11,6 +11,6 @@ options:
 #deploy the image flog to cloud run using cloud build
 steps:
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['run', 'deploy', 'flog', '--image', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:$SHORT_SHA', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated']
+  args: ['run', 'deploy', 'flog', '--image', 'us-west1-docker.pkg.dev/$PROJECT_ID/flog/flog:latest', '--platform', 'managed', '--region', 'us-west1', '--allow-unauthenticated']
 options:
   dynamic_substitutions: true
